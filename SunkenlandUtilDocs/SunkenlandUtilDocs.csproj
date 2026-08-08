@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>SunkenlandUtilDocs</AssemblyName>
+    <RootNamespace>SunkenlandUtilDocs</RootNamespace>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <SunkenlandDir Condition="'$(SunkenlandDir)' == ''">D:\STEAM\steamapps\common\Sunkenland</SunkenlandDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(SunkenlandDir)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="SunkenlandLocalizationAPI">
+      <HintPath>$(SunkenlandDir)\BepInEx\plugins\SunkenlandLocalizationAPI\SunkenlandLocalizationAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(SunkenlandDir)\Sunkenland_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(SunkenlandDir)\Sunkenland_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
