@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using BepInEx;
@@ -112,7 +113,10 @@ public sealed class SunkenlandUtilDocsPlugin : BaseUnityPlugin
             return;
         }
 
-        var localizer = LocalizationApi.For(UtilPluginGuid);
+        var localizer = LocalizationApi.For(PluginGuid);
+        localizer.RegisterJson(Path.Combine(
+            Path.GetDirectoryName(Info.Location),
+            "SunkenlandUtilDocs.Localization.json"));
         var applied = 0;
 
         foreach (var entry in utilPlugin.Config)
@@ -121,12 +125,18 @@ public sealed class SunkenlandUtilDocsPlugin : BaseUnityPlugin
                 continue;
 
             DescriptionField.SetValue(entry.Value, new ConfigDescription(doc.Description));
-            localizer.RegisterConfigDisplayName(entry.Value, doc.DisplayName);
+            localizer.RegisterConfigDisplayName(entry.Value, $"setting.{doc.Key}.name");
+
+            var resolvedName = LocalizationApi.GetConfigDisplayName(entry.Value);
+            if (string.Equals(resolvedName, entry.Value.Definition.Key, StringComparison.Ordinal))
+                throw new InvalidOperationException(
+                    $"Setting label '{doc.Key}' fell back to its original name.");
+
             applied++;
         }
 
         utilPlugin.Config.Save();
-        Logger.LogInfo($"Applied detailed guidance to {applied} Sunkenland Util settings.");
+        Logger.LogInfo($"Applied and verified detailed guidance for {applied} Sunkenland Util settings.");
     }
 
     private static SettingDoc Number(string key, string displayName, string description) =>

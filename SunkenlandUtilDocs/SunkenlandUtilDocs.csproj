@@ -28,4 +28,8 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SunkenlandUtilDocs.Localization.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>
