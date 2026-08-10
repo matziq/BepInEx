@@ -19,6 +19,10 @@
       <HintPath>$(SunkenlandDir)\BepInEx\plugins\SunkenlandLocalizationAPI\SunkenlandLocalizationAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="ModSettingsMenu">
+      <HintPath>$(SunkenlandDir)\BepInEx\plugins\ModSettingsMenu\ModSettingsMenu.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>$(SunkenlandDir)\Sunkenland_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
